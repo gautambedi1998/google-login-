@@ -1,0 +1,102 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="88846241852-vqpm3tcirm1qpo0pabuk0tli3e7i713c.apps.googleusercontent.com">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   Start of  Zendesk Widget script -->
+<!-- <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=e570548b-ce51-4e71-82e8-e37782b45812"> </script> --> -->
+<!-- End of  Zendesk Widget script -->
+<!-- </head>
+<body> -->
+<!-- this one is button -->
+<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
+<script>
+{
+  gapi.load('auth2', function () {
+    auth2 = gapi.auth2.init({client_id: '88846241852-vqpm3tcirm1qpo0pabuk0tli3e7i713c.apps.googleusercontent.com',
+    })
+
+    if (auth2.isSignedIn.get()) {
+      var profile = auth2.currentUser.get().getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
+  }
+
+</script>
+</body>
+</html> -->
+<html>
+    <head>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="88846241852-vqpm3tcirm1qpo0pabuk0tli3e7i713c.apps.googleusercontent.com">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+         Start of  Zendesk Widget script -->
+       <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=e570548b-ce51-4e71-82e8-e37782b45812"> </script> 
+      <!-- End of  Zendesk Widget script -->
+      </head>
+  <body>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+<script type="text/javascript">
+  function login()
+  {
+    var myParams = {
+      'clientid' : '88846241852-vqpm3tcirm1qpo0pabuk0tli3e7i713c.apps.googleusercontent.com',
+      'cookiepolicy' : 'single_host_origin',
+      'callback' : 'loginCallback',
+      'approvalprompt':'force',
+      'scope' : 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+    };
+    gapi.auth.signIn(myParams);
+  }
+
+  function loginCallback(result)
+  {
+      if(result['status']['signed_in'])
+      {
+          var request = gapi.client.plus.people.get(
+          {
+              'userId': 'me'
+          });
+          request.execute(function (resp)
+          {
+              /* console.log(resp);
+              console.log(resp['id']); */
+              var email = '';
+              if(resp['emails'])
+              {
+                  for(i = 0; i < resp['emails'].length; i++)
+                  {
+                      if(resp['emails'][i]['type'] == 'account')
+                      {
+                          email = resp['emails'][i]['value'];//here is required email id
+                      }
+                  }
+              }
+             var usersname = resp['displayName'];//required name
+          });
+      }
+  }
+  function onLoadCallback()
+  {
+      gapi.client.setApiKey('AIzaSyAtf0go9v_KS0EAaCFtv0b2HBl2JxHiOnc');
+      gapi.client.load('plus', 'v1',function(){});
+  }
+
+      </script>
+
+  <script type="text/javascript">
+        (function() {
+         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+         po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+       })();
+  </script>
+  </body>
+  </html>
